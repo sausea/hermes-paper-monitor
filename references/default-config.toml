@@ -1,0 +1,232 @@
+[workspace]
+database = "../runtime/papers.sqlite"
+pdf_dir = "../site/pdfs"
+site_dir = "../site"
+staging_dir = "../runtime/staging"
+download_pdfs = false
+workflow_mode = "abstract-only"
+since_days = 14
+timeout_seconds = 25
+max_items_per_source = 30
+user_agent = "HermesPaperMonitor/0.1 (+local automation)"
+
+[keywords]
+terms = [
+  "visual inertial",
+  "vehicle",
+  "state estimation",
+  "location",
+  "inertial",
+  "odometry",
+  "navigation",
+  "ins",
+  "gnss",
+  "gps",
+  "5g",
+  "slam",
+  "geomagnetic",
+  "gpr",
+]
+categories = ["cs.RO", "cs.AI", "cs.HC", "cs.MA"]
+
+# The default profile is abstract-only:
+# monitor new papers, collect title/abstract metadata, update SQLite, rebuild the site.
+# Add cookie_file or auth headers and switch workflow_mode to "full" only if you want
+# restricted PDF downloads plus post-discovery enrichment.
+
+[llm_translation]
+enabled = true
+api_endpoint = "https://api.edgefn.net/v1"
+model = "DeepSeek-R1-0528-Qwen3-8B"
+api_key_env = "sk-ELoPUl7jAFQesEzV7b97220b01E246C480Fb3637CdC2F361"
+temperature = 0.2
+# Keep this modest for reasoning-capable models. Oversized limits can trigger provider-side 400s
+# before the model returns the translated summary.
+max_output_tokens = 1024
+title_max_output_tokens = 512
+only_translate_english = true
+# system_prompt = "Override the default academic translation prompt if needed."
+# title_system_prompt = "Override the default title translation prompt if needed."
+# headers = { }
+# extra_body = { }
+
+[service]
+host = "127.0.0.1"
+port = 8765
+refresh_interval_minutes = 0
+daily_refresh_times = ["06:00", "18:00"]
+initial_refresh = true
+
+[[sources]]
+id = "ieee-41"
+label = "IEEE Transactions on Industrial Electronics"
+kind = "crossref-journal"
+url = "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=41"
+journal_issn = "0278-0046"
+publisher = "IEEE"
+collection = "IEEE Transactions on Industrial Electronics"
+requires_cookies = false
+pdf_policy = "restricted"
+# cookie_file = "../secrets/ieee.cookies.txt"
+headers = { User-Agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", Accept-Language = "en-US,en;q=0.9" }
+follow_article_pages = true
+max_items = 30
+
+[[sources]]
+id = "ieee-6979"
+label = "IEEE Transactions on Intelligent Transportation Systems"
+kind = "crossref-journal"
+url = "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6979"
+journal_issn = "1524-9050"
+publisher = "IEEE"
+collection = "IEEE Transactions on Intelligent Transportation Systems"
+requires_cookies = false
+pdf_policy = "restricted"
+# cookie_file = "../secrets/ieee.cookies.txt"
+headers = { User-Agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", Accept-Language = "en-US,en;q=0.9" }
+follow_article_pages = true
+max_items = 30
+
+[[sources]]
+id = "ieee-34"
+label = "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+kind = "crossref-journal"
+url = "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=34"
+journal_issn = "0162-8828"
+publisher = "IEEE"
+collection = "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+requires_cookies = false
+pdf_policy = "restricted"
+# cookie_file = "../secrets/ieee.cookies.txt"
+headers = { User-Agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", Accept-Language = "en-US,en;q=0.9" }
+follow_article_pages = true
+max_items = 30
+
+[[sources]]
+id = "ieee-7755"
+label = "IEEE Transactions on Mobile Computing"
+kind = "crossref-journal"
+url = "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=7755"
+journal_issn = "1536-1233"
+publisher = "IEEE"
+collection = "IEEE Transactions on Mobile Computing"
+requires_cookies = false
+pdf_policy = "restricted"
+# cookie_file = "../secrets/ieee.cookies.txt"
+headers = { User-Agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36", Accept-Language = "en-US,en;q=0.9" }
+follow_article_pages = true
+max_items = 30
+
+[[sources]]
+id = "information-fusion"
+label = "Information Fusion"
+kind = "crossref-journal"
+url = "https://api.crossref.org/journals/15662535/works"
+journal_issn = "1566-2535"
+publisher = "Elsevier"
+collection = "Information Fusion"
+requires_cookies = false
+pdf_policy = "restricted"
+follow_article_pages = false
+max_items = 20
+
+[[sources]]
+id = "gps-solutions"
+label = "GPS Solutions"
+kind = "html-list"
+url = "https://link.springer.com/journal/10291"
+publisher = "Springer"
+collection = "GPS Solutions"
+pdf_policy = "best-effort"
+include_url_patterns = ["/article/", "/openurl?genre=article"]
+exclude_url_patterns = ["/submission-guidelines", "/editorial-board"]
+follow_article_pages = true
+max_items = 20
+
+[[sources]]
+id = "navi-rss"
+label = "ION Navigation RSS"
+kind = "rss"
+url = "https://navi.ion.org/rss/recent.xml"
+publisher = "ION"
+collection = "NAVIGATION"
+follow_article_pages = true
+max_items = 40
+
+[[sources]]
+id = "journal-of-navigation"
+label = "Journal of Navigation"
+kind = "html-list"
+url = "https://www.cambridge.org/core/journals/journal-of-navigation"
+publisher = "Cambridge University Press"
+collection = "Journal of Navigation"
+pdf_policy = "best-effort"
+include_url_patterns = ["/core/journals/journal-of-navigation/article/"]
+exclude_url_patterns = ["/latest-issue", "/most-read", "/about"]
+follow_article_pages = true
+max_items = 25
+
+[[sources]]
+id = "arxiv-nav"
+label = "arXiv Robotics and AI"
+kind = "arxiv-api"
+url = "https://export.arxiv.org/api/query"
+publisher = "arXiv"
+collection = "cs.RO, cs.AI, cs.HC, cs.MA"
+categories = ["cs.RO", "cs.AI", "cs.HC", "cs.MA"]
+follow_article_pages = false
+max_items = 80
+
+[[sources]]
+id = "mwj-rss"
+label = "Microwave Journal RFID GPS UWB RSS"
+kind = "rss"
+url = "https://www.microwavejournal.com/rss/topic/3530-rfid-gps-uwb-location-channel"
+publisher = "Microwave Journal"
+collection = "RFID GPS UWB Location Channel"
+follow_article_pages = true
+max_items = 40
+
+[[sources]]
+id = "whdy-journal"
+label = "武汉大学学报（理学版）"
+kind = "html-list"
+url = "https://whdy.publish.founderss.cn/zh/onlineFirst/"
+publisher = "Founderss"
+collection = "武汉大学学报（理学版）"
+pdf_policy = "best-effort"
+include_url_patterns = ["/zh/article/doi/", "/article/doi/"]
+exclude_url_patterns = ["/zh/home", "/zh/about", "/zh/info", "/zh/news", "/collections/"]
+follow_article_pages = true
+max_items = 40
+
+[[sources]]
+id = "buaa-journal"
+label = "北京航空航天大学学报"
+kind = "html-list"
+url = "https://bhxb.buaa.edu.cn/bhzk/cn/article/latest_all"
+publisher = "BUAA"
+collection = "北京航空航天大学学报"
+pdf_policy = "best-effort"
+include_url_patterns = ["dx.doi.org/10.13700/", "doi.org/10.13700/", "/bhzk/cn/article/doi/", "/cn/article/doi/"]
+exclude_url_patterns = ["showRssInfo", "/about", "/instruction", "viewType=References", "viewType=Relative", "viewType=Resource", "viewType=Access", "citedby-info"]
+article_url_templates = ["https://bhxb.buaa.edu.cn/bhzk/cn/article/doi/{doi}"]
+enrichment_url_templates = ["https://link.cnki.net/doi/{doi}"]
+headers = { User-Agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" }
+follow_article_pages = true
+max_items = 40
+
+[[sources]]
+id = "space-journal"
+label = "导航定位与授时"
+kind = "tpl-data"
+url = "https://dhdwyss.spacejournal.cn/cn/article/latest_accepted"
+api_endpoint = "https://dhdwyss.spacejournal.cn/data/tplData"
+api_payload = { dataOutputName = "latest_accepted_list", currentpage = 1 }
+publisher = "Space Journal"
+collection = "导航定位与授时"
+pdf_policy = "best-effort"
+article_url_templates = ["https://dhdwyss.spacejournal.cn/cn/article/doi/{doi}"]
+headers = { User-Agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" }
+follow_article_pages = true
+max_items = 40

@@ -1,0 +1,44 @@
+[workspace]
+database = "../runtime/test-papers.sqlite"
+pdf_dir = "../runtime/test-site/pdfs"
+site_dir = "../runtime/test-site"
+staging_dir = "../runtime/test-staging"
+download_pdfs = false
+workflow_mode = "abstract-only"
+since_days = 3650
+timeout_seconds = 10
+max_items_per_source = 10
+user_agent = "HermesPaperMonitor/0.1 (+offline smoke test)"
+
+[keywords]
+terms = [
+  "visual inertial",
+  "vehicle",
+  "state estimation",
+  "navigation",
+  "gnss",
+  "slam",
+]
+categories = ["cs.RO"]
+
+[[sources]]
+id = "fixture-rss"
+label = "Fixture RSS"
+kind = "rss"
+url = "fixtures/test-feed.xml"
+publisher = "Fixture Publisher"
+collection = "Fixture Feed"
+follow_article_pages = false
+max_items = 10
+
+[[sources]]
+id = "fixture-html"
+label = "Fixture HTML"
+kind = "html-list"
+url = "fixtures/test-list.html"
+publisher = "Fixture Journal"
+collection = "Fixture Journal"
+include_url_patterns = ["test-article.html"]
+exclude_url_patterns = []
+follow_article_pages = true
+max_items = 10

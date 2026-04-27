@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hermes Paper Monitor</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Local Research Reading Room</p>
+          <h1>Hermes Paper Monitor</h1>
+          <p class="lede">
+            聚合论文监控、中文摘要、作者单位补全和本地静态阅读。
+          </p>
+        </div>
+        <div class="hero-stats" id="hero-stats"></div>
+      </header>
+
+      <section class="controls">
+        <label>
+          <span>搜索标题 / 摘要</span>
+          <input id="search-input" type="search" placeholder="例如 visual inertial, GNSS, slam">
+        </label>
+        <label>
+          <span>来源</span>
+          <select id="source-select">
+            <option value="all">全部来源</option>
+          </select>
+        </label>
+        <label>
+          <span>状态</span>
+          <select id="status-select">
+            <option value="all">全部状态</option>
+            <option value="ready">已完成</option>
+            <option value="pending_enrichment">待补全</option>
+            <option value="needs_review">需人工检查</option>
+          </select>
+        </label>
+        <label>
+          <span>阅读状态</span>
+          <select id="read-select">
+            <option value="all">全部</option>
+            <option value="unread">未读</option>
+            <option value="read">已读</option>
+          </select>
+        </label>
+        <label>
+          <span>关键词</span>
+          <select id="keyword-select">
+            <option value="all">全部关键词</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="results-summary" id="results-summary"></section>
+      <section class="paper-grid" id="paper-grid"></section>
+    </div>
+
+    <script src="./catalog.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

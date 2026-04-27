@@ -1,0 +1,43 @@
+[workspace]
+database = "../runtime/papers.sqlite"
+pdf_dir = "../site/pdfs"
+site_dir = "../site"
+staging_dir = "../runtime/staging"
+download_pdfs = false
+workflow_mode = "abstract-only"
+since_days = 14
+timeout_seconds = 25
+max_items_per_source = 20
+user_agent = "HermesPaperMonitor/0.1 (+local automation)"
+
+[keywords]
+terms = [
+  "visual inertial",
+  "vehicle",
+  "state estimation",
+  "location",
+  "inertial",
+  "odometry",
+  "navigation",
+  "ins",
+  "gnss",
+  "gps",
+  "5g",
+  "slam",
+  "geomagnetic",
+  "gpr",
+]
+categories = ["cs.RO", "cs.AI", "cs.HC", "cs.MA"]
+
+[[sources]]
+id = "information-fusion"
+label = "Information Fusion"
+kind = "crossref-journal"
+url = "https://api.crossref.org/journals/15662535/works"
+journal_issn = "1566-2535"
+publisher = "Elsevier"
+collection = "Information Fusion"
+requires_cookies = false
+pdf_policy = "restricted"
+follow_article_pages = false
+max_items = 20

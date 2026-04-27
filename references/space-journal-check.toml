@@ -1,0 +1,45 @@
+[workspace]
+database = "../runtime/papers.sqlite"
+pdf_dir = "../site/pdfs"
+site_dir = "../site"
+staging_dir = "../runtime/staging"
+download_pdfs = false
+workflow_mode = "abstract-only"
+since_days = 14
+timeout_seconds = 25
+max_items_per_source = 40
+user_agent = "HermesPaperMonitor/0.1 (+local automation)"
+
+[keywords]
+terms = [
+  "visual inertial",
+  "vehicle",
+  "state estimation",
+  "location",
+  "inertial",
+  "odometry",
+  "navigation",
+  "ins",
+  "gnss",
+  "gps",
+  "5g",
+  "slam",
+  "geomagnetic",
+  "gpr",
+]
+categories = ["cs.RO", "cs.AI", "cs.HC", "cs.MA"]
+
+[[sources]]
+id = "space-journal"
+label = "导航定位与授时"
+kind = "tpl-data"
+url = "https://dhdwyss.spacejournal.cn/cn/article/latest_accepted"
+api_endpoint = "https://dhdwyss.spacejournal.cn/data/tplData"
+api_payload = { dataOutputName = "latest_accepted_list", currentpage = 1 }
+publisher = "Space Journal"
+collection = "导航定位与授时"
+pdf_policy = "best-effort"
+article_url_templates = ["https://dhdwyss.spacejournal.cn/cn/article/doi/{doi}"]
+headers = { User-Agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" }
+follow_article_pages = true
+max_items = 40

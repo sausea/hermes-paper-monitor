@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hermes Paper Monitor"
+  short_description: "Monitor papers and build a local reading hub"
+  default_prompt: "Use $hermes-paper-monitor to monitor new papers, enrich metadata, and rebuild the local reading site."

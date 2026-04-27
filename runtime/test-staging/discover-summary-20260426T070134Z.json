@@ -1,0 +1,22 @@
+{
+  "run_id": "20260426T070134Z",
+  "workflow_mode": "abstract-only",
+  "queue_path": "/Users/usr/dls/skill/hermes-paper-monitor/runtime/test-staging/enrichment-20260426T070134Z.jsonl",
+  "new_papers": 0,
+  "queue_records": 0,
+  "new_records": 0,
+  "sources": {
+    "fixture-rss": {
+      "fetched": 2,
+      "accepted": 1,
+      "new": 0,
+      "errors": []
+    },
+    "fixture-html": {
+      "fetched": 1,
+      "accepted": 1,
+      "new": 0,
+      "errors": []
+    }
+  }
+}

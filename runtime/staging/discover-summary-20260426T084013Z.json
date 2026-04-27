@@ -1,0 +1,52 @@
+{
+  "run_id": "20260426T084013Z",
+  "workflow_mode": "abstract-only",
+  "queue_path": "/Users/usr/dls/skill/hermes-paper-monitor/runtime/staging/enrichment-20260426T084013Z.jsonl",
+  "new_papers": 6,
+  "queue_records": 0,
+  "new_records": 0,
+  "sources": {
+    "ieee-41": {
+      "fetched": 30,
+      "accepted": 6,
+      "new": 0,
+      "errors": []
+    },
+    "ieee-6979": {
+      "fetched": 30,
+      "accepted": 0,
+      "new": 0,
+      "errors": []
+    },
+    "ieee-34": {
+      "fetched": 30,
+      "accepted": 2,
+      "new": 0,
+      "errors": []
+    },
+    "ieee-7755": {
+      "fetched": 30,
+      "accepted": 4,
+      "new": 0,
+      "errors": []
+    },
+    "whdy-journal": {
+      "fetched": 20,
+      "accepted": 0,
+      "new": 0,
+      "errors": []
+    },
+    "buaa-journal": {
+      "fetched": 40,
+      "accepted": 6,
+      "new": 6,
+      "errors": []
+    },
+    "space-journal": {
+      "fetched": 14,
+      "accepted": 0,
+      "new": 0,
+      "errors": []
+    }
+  }
+}

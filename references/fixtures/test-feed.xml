@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Fixture Feed</title>
+    <link>https://example.test/feed</link>
+    <description>Offline fixture feed for Hermes Paper Monitor</description>
+
+    <item>
+      <title>Visual inertial vehicle state estimation with GNSS priors</title>
+      <link>file:///Users/usr/dls/skill/hermes-paper-monitor/references/fixtures/test-article.html</link>
+      <description>
+        A paper about robust visual inertial navigation for autonomous vehicle state estimation.
+      </description>
+      <pubDate>Fri, 25 Apr 2026 09:00:00 GMT</pubDate>
+      <category>navigation</category>
+    </item>
+
+    <item>
+      <title>Unrelated chemistry article</title>
+      <link>https://example.test/chemistry</link>
+      <description>Should be filtered out by the keyword matcher.</description>
+      <pubDate>Fri, 25 Apr 2026 09:00:00 GMT</pubDate>
+      <category>chemistry</category>
+    </item>
+  </channel>
+</rss>
