@@ -1,0 +1,57 @@
+name: Refresh Papers And Deploy Pages
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6,18 * * *"
+      timezone: "Asia/Shanghai"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  refresh-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    env:
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Bootstrap
+        run: python3 scripts/paper_pipeline.py --config references/default-config.toml bootstrap
+
+      - name: Discover
+        run: python3 scripts/paper_pipeline.py --config references/default-config.toml discover
+
+      - name: Build Site
+        run: python3 scripts/paper_pipeline.py --config references/default-config.toml build-site
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
